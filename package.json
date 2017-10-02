@@ -1,0 +1,22 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "webpack的学习项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csnikey/webpack-demo.git"
+  },
+  "author": "zhangbing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csnikey/webpack-demo/issues"
+  },
+  "homepage": "https://github.com/csnikey/webpack-demo#readme",
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  }
+}
