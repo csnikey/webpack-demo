@@ -1,4 +1,9 @@
 //注：“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development"
+});
 module.exports = {
     entry:  __dirname + "/src/main.js",//已多次提及的唯一入口文件
     output: {
@@ -12,17 +17,16 @@ module.exports = {
     } ,
     module:{
       loaders:[
-        {
-          test: /\.css$/,
-          use: [
-              {
-                  loader: "style-loader"
-              }, {
-                  loader: "css-loader"
-              }
-          ]
-      },
+
+      {
+        test: /\.scss$/,
+        loader:ExtractTextPlugin.extract("css-loader!sass-loader")
+       
+    },
 
       ]
-    }
+    },
+    plugins: [
+      new ExtractTextPlugin("style.css") //提取出来的样式放在style.css文件中
+  ]
   }
