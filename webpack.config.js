@@ -1,4 +1,6 @@
 //注：“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
+const resolve=require("resolve");
+const webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractSass = new ExtractTextPlugin({
   filename: "[name].[contenthash].css",
@@ -13,7 +15,8 @@ module.exports = {
     devServer: {
       contentBase: "./public",//本地服务器所加载的页面所在的目录
       historyApiFallback: true,//不跳转
-      inline: true//实时刷新
+      inline: true,//实时刷新
+      host: '0.0.0.0'
     } ,
     module:{
       loaders:[
@@ -23,10 +26,19 @@ module.exports = {
         loader:ExtractTextPlugin.extract("css-loader!sass-loader")
        
     },
+    {
+      test: /(\.jsx|\.js)$/,
+      use: {
+          loader: "babel-loader",
+      },
+       include:[resolve('src'), resolve('test')],
+       exclude: /node_modules/
+  }
 
       ]
     },
     plugins: [
-      new ExtractTextPlugin("style.css") //提取出来的样式放在style.css文件中
+      new ExtractTextPlugin("style.css"), //提取出来的样式放在style.css文件中
+      new webpack.BannerPlugin("版权所有，翻版必究（开课啦新航新技术部）")
   ]
   }

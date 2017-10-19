@@ -1,7 +1,8 @@
+/*! 版权所有，翻版必究（开课啦新航新技术部） */
 body {
   font-size: 20px;
-  line-height: 14px;
-  color: Red; }
+  line-height: 14px; }
   body h1 {
     font-size: 30px;
-    line-height: 3; }
+    line-height: 3;
+    color: Red; }
