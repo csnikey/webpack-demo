@@ -1,5 +1,9 @@
 //注：“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
-const resolve=require("resolve");
+// 配置babel的解析器  其中 resolve是解析路径的
+const path=require("path");
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+  }
 const webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractSass = new ExtractTextPlugin({
@@ -12,11 +16,16 @@ module.exports = {
       path: __dirname + "/public",//打包后的文件存放的地方
       filename: "bundle.js"//打包后输出文件的文件名
     },
+    devtool: 'eval-source-map',
     devServer: {
       contentBase: "./public",//本地服务器所加载的页面所在的目录
       historyApiFallback: true,//不跳转
       inline: true,//实时刷新
-      host: '0.0.0.0'
+      open:false
+
+      // disableHostCheck: true,
+      // or
+      // public: '172.16.71.56:8082'
     } ,
     module:{
       loaders:[
